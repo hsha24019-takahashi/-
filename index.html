@@ -3,65 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>モノ申すおみくじ</title>
+    <title>モノ申すおみくじ V3</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="app-container">
-        <!-- トップ画面 -->
-        <div id="top-screen" class="screen">
-            <header class="app-header">
-                <h1 class="main-title">モノ申すおみくじ</h1>
-                <p class="tagline">〜出かける前のあなたに、日用品からチクリと一言〜</p>
-            </header>
-            
-            <div class="main-visual">
-                <div class="character-group">
-                    <div class="char-icon toaster">🍞<span>👁️👁️</span></div>
-                    <div class="char-icon toothbrush">🪥<span>👁️👁️</span></div>
-                    <div class="char-icon mug">☕<span>👁️👁️</span></div>
-                </div>
-            </div>
 
-            <div class="action-area">
-                <button id="draw-btn" class="primary-btn">おみくじを引く</button>
-            </div>
+<div class="app-container">
+    <header>
+        <h1>モノ申すおみくじ</h1>
+        <p>〜我が家の日用品シアター〜</p>
+    </header>
 
-            <div class="stats-footer">
-                <p>解放されたモノたちの数: <span id="unlocked-count">3</span> / 6</p>
-                <p class="points-display">継続ポイント: <span id="points-val">0</span> pt</p>
+    <div class="content-area">
+        <div id="screenTop" class="screen-top">
+            <div id="omikujiVisual" class="omikuji-visual">📦</div>
+            <div>
+                <button id="btnDraw" class="btn-draw" onclick="drawOmikuji()">物たちの噂話を聞く</button>
+                <div id="limitNotice" class="limit-notice">本日の覗き見は終了しました。また明日（午前4時以降）お越しください。</div>
             </div>
         </div>
 
-        <!-- 結果画面 -->
-        <div id="result-screen" class="screen hidden">
-            <div class="result-header">
-                <span class="result-label">本日の運勢（おもてなし度）</span>
-                <h2 id="fortune-rank" class="rank-title">ーー</h2>
-                <p id="fortune-subtitle" class="rank-subtitle">ーーー</p>
+        <div id="screenResult" class="screen-result">
+            <div class="fortune-header">
+                <div id="fortuneRank" class="fortune-rank">ーー</div>
+                <div id="fortuneSub" class="fortune-sub">ーーー</div>
             </div>
 
-            <div class="drama-box">
-                <div class="drama-title">🏠 家の中の緊急脳内会議</div>
-                <div id="drama-content" class="drama-lines">
-                    <!-- JavaScriptで会話が挿入されます -->
+            <div class="theater-stage">
+                <div id="char-clock" class="character">
+                    <div id="effect-clock" class="effect-layer"></div>
+                    <div class="char-avatar">⏰<div id="face-clock" class="char-face-overlay"></div></div>
+                    <div class="char-name">時計</div>
+                </div>
+                <div id="char-mirror" class="character">
+                    <div id="effect-mirror" class="effect-layer"></div>
+                    <div class="char-avatar">🪞<div id="face-mirror" class="char-face-overlay"></div></div>
+                    <div class="char-name">姿見</div>
+                </div>
+                <div id="char-third" class="character">
+                    <div id="effect-third" class="effect-layer"></div>
+                    <div id="avatar-third" class="char-avatar">🔌<div id="face-third" class="char-face-overlay"></div></div>
+                    <div id="name-third" class="char-name">充電器</div>
                 </div>
             </div>
 
-            <div class="action-area">
-                <button id="back-btn" class="secondary-btn">戻る（明日の朝また引く）</button>
+            <div class="dialogue-box" onclick="nextDialogue()">
+                <div id="dialogueSpeaker" class="dialogue-speaker">ーー</div>
+                <div id="dialogueText" class="dialogue-text">ーーー</div>
+                <div id="dialogueHint" class="dialogue-hint">タップで進む ▶</div>
             </div>
-            
-            <div id="unlock-notification" class="toast-notification hidden">
-                <span class="toast-icon">✨</span>
-                <span id="unlock-msg">新しいモノが会議に仲間入りしました！</span>
+
+            <div id="resultActions" class="result-actions">
+                <button class="btn-action btn-reset" onclick="backToTop()">戻る</button>
+                <a id="shareLink" class="btn-action btn-share" target="_blank" href="#">Xで部屋を覗き見させる</a>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
